@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts":{
-    "dev":"node index.js --watch"
+    "dev":"node src/index.js --watch"
   },
   "dependencies": {
     "cors": "^2.8.5",
