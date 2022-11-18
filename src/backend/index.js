@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import multer from 'multer';
-import {create} from 'ipfs-http-client';
+import { create } from 'ipfs-http-client';
 
 const projectId = '2HiowWZxAvSRnGmeoMGFWYFQao5';
 const projectSecret = '4b9253006dcd401f1051942f64c1a89d';
@@ -32,6 +32,6 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     res.json({ hash: data.path, url: `https://gratia.infura-ipfs.io/ipfs/${data.path}`, filetype: req.file.mimetype })
 });
 
-app.listen(3000, () => {
+app.listen(4000, () => {
     console.log('Server started on port 3000');
 })
