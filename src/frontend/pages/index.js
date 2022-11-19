@@ -56,7 +56,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    connect && (async function () {
+    status === "connected" && (async function () {
       const accounts = await web3.eth.getAccounts()
       const artists = await factory.methods.getArtist().call()
 
@@ -86,7 +86,7 @@ const Home = () => {
 
     })();
 
-  }, [loading, contributeLoading, connect])
+  }, [loading, contributeLoading, status])
 
 
 
@@ -138,6 +138,7 @@ const Home = () => {
         <button className="px-[2rem] rounded-[10px] text-white font-[700] text-[26px] mt-[1rem] rounded py-[0.25rem] bg-[#4355AF]">Go!</button>
         <p className="text-[38px] font-[700] w-[80vw] mt-[1rem] text-left">Featured Artists</p>
         <div className='my-[2rem] flex flex-col gap-[1rem]'>
+          {status === "notConnected" && <p className='text-[26px] font-[700] text-center'>Connect To Metamask to Access the Content</p>}
           {artistsDetails.map((e, idx) => {
             return <ArtistListItem details={e} onClick={() => { setOpenIndex(idx); setOpen(true) }} />
           })}
