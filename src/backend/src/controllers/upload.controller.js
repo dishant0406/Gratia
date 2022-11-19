@@ -6,7 +6,8 @@ class UploadController extends UploadService {
         super();
     }
 
-    uploadFile(req, res) {
+    uploadFile(req, res, next) {
+        console.log(req.body)
         const file = req.file;
         if (!file) {
             const error = new Error('Please upload a file');
