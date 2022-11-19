@@ -5,7 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts":{
-    "dev":"node src/index.js --watch"
+    "dev":"node src/index.js --watch",
+    "start":"cross-env PORT=3259 node src/index.js --watch"
   },
   "dependencies": {
     "cors": "^2.8.5",
