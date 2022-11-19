@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "cross-env PORT=3258 next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "cross-env": "^7.0.3",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.4",
     "postcss": "^8.4.19",
