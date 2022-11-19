@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import routes from './routers/index.js';
 
 const app = express();
-const port = 4000;
+const port = 3259;
 
 app.use(helmet());
 app.use(cors());

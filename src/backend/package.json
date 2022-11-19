@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "type": "module",
-  "scripts":{
-    "dev":"node src/index.js --watch",
-    "start":"cross-env PORT=3259 node src/index.js --watch"
+  "scripts": {
+    "dev": "node src/index.js --watch",
+    "start": "cross-env PORT=3259 node src/index.js --watch"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -15,5 +15,8 @@
     "ipfs-api": "^26.1.2",
     "ipfs-http-client": "^59.0.0",
     "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

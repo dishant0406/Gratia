@@ -32,6 +32,6 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     res.json({ hash: data.path, url: `https://gratia.infura-ipfs.io/ipfs/${data.path}`, filetype: req.file.mimetype })
 });
 
-app.listen(4000, () => {
+app.listen(3259, () => {
     console.log('Server started on port 3000');
 })
