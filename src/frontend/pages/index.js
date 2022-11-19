@@ -45,7 +45,7 @@ const Home = () => {
       }
     }
     try {
-      const { data } = await axios.post('http://localhost:4000/upload', formData, config);
+      const { data } = await axios.post('/api/upload', formData, config);
       setImageUrl(data.url)
       setArtistData({ ...ArtistData, purl: data.url })
     }
