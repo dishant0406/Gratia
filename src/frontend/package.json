@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "cross-env PORT=3258 next start",
+    "start": "PORT=3258 next start",
     "lint": "next lint"
   },
   "dependencies": {
