@@ -56,7 +56,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    (async function () {
+    connect && (async function () {
       const accounts = await web3.eth.getAccounts()
       const artists = await factory.methods.getArtist().call()
 
@@ -86,7 +86,7 @@ const Home = () => {
 
     })();
 
-  }, [loading, contributeLoading])
+  }, [loading, contributeLoading, connect])
 
 
 
