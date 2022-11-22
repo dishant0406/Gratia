@@ -3,12 +3,19 @@ pragma solidity ^0.4.17;
 contract pateronFactory{
     address[] public registeredArtists;
     mapping(string=>address) uniqueIdtoAddress;
+    mapping(address=>bool) public isArtist;
     uint public artistCount;
 
-    function createArtist(string name,uint minContrib, string uid, string youtube, string twitch, string category,string purl) public{
+    modifier alreadyArtist(){
+        require(isArtist[msg.sender]==false);
+        _;
+    }
+
+    function createArtist(string name,uint minContrib, string uid, string youtube, string twitch, string category,string purl) public alreadyArtist{
         address newArtist = new Artist(name, minContrib,msg.sender, uid, youtube, twitch, category, purl);
         registeredArtists.push(newArtist);
         uniqueIdtoAddress[uid]=newArtist;
+        isArtist[msg.sender]=true;
         artistCount++;
     }
 
