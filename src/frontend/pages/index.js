@@ -57,57 +57,74 @@ const Home = () => {
 
   useEffect(() => {
     status === "connected" && (async function () {
-      const accounts = await web3.eth.getAccounts()
-      const artists = await factory.methods.getArtist().call()
+      try {
+        if (account) {
+          const artists = await factory.methods.getArtist().call()
 
-      const newArr = await Promise.all(artists.map(async (_, index) => {
+          const newArr = await Promise.all(artists.map(async (_, index) => {
 
-        const newArtistInstace = artistContract(artists[index])
-        const artistDetail = await newArtistInstace.methods.getArtistDetails().call()
+            const newArtistInstace = artistContract(artists[index])
+            const artistDetail = await newArtistInstace.methods.getArtistDetails().call()
 
-        const isSubscribed = await newArtistInstace.methods.subscribedUsers(accounts[0]).call()
-        console.log(isSubscribed)
+            const isSubscribed = await newArtistInstace.methods.subscribedUsers(account).call()
+            console.log(isSubscribed)
 
-        return {
-          name: artistDetail[0],
-          uid: artistDetail[1],
-          youtube: artistDetail[2],
-          twitch: artistDetail[3],
-          minContri: artistDetail[4],
-          cate: artistDetail[5],
-          postsCount: artistDetail[6],
-          imgurl: artistDetail[7],
-          isSub: isSubscribed
+            return {
+              name: artistDetail[0],
+              uid: artistDetail[1],
+              youtube: artistDetail[2],
+              twitch: artistDetail[3],
+              minContri: artistDetail[4],
+              cate: artistDetail[5],
+              postsCount: artistDetail[6],
+              imgurl: artistDetail[7],
+              isSub: isSubscribed
+            }
+
+          }))
+          setArtistsDetails(newArr)
         }
-
-      }))
-      setArtistsDetails(newArr)
+      } catch (err) {
+        console.log(err)
+      }
 
 
     })();
 
-  }, [loading, contributeLoading, status])
+  }, [loading, contributeLoading, status, account])
 
 
 
   const handleCreateArtist = async () => {
-    try {
-      setLoading(true)
-      setErr('')
-      const accounts = await web3.eth.getAccounts()
-      await factory.methods.createArtist(ArtistData.title, web3.utils.toWei(ArtistData.mincontri, 'ether'), ArtistData.uid, ArtistData.youtube, ArtistData.twitch, ArtistData.category, ArtistData.purl).send({
-        from: accounts[0]
-      })
-      setOpen(false)
-    } catch (err) {
-      if (err.message.includes(':')) {
-        setErr(err.message.split(':')[1])
+    if (ArtistData.title !== '' && ArtistData.mincontri !== 0 && ArtistData.uid != '' && ArtistData.youtube !== '' && ArtistData.twitch !== '' && ArtistData.category !== '' && ArtistData.purl !== '') {
+      try {
+        setLoading(true)
+        setErr('')
+        await factory.methods.createArtist(ArtistData.title, web3.utils.toWei(ArtistData.mincontri, 'ether'), ArtistData.uid, ArtistData.youtube, ArtistData.twitch, ArtistData.category, ArtistData.purl).send({
+          from: account
+        })
+        setOpen(false)
+        setSignupOpen(false)
+        setArtistData({
+          title: '',
+          mincontri: 0,
+          account,
+          uid: '',
+          youtube: '',
+          twitch: '',
+          category: '',
+          purl: imageUrl
+        })
+      } catch (err) {
+        if (err.message.includes(':')) {
+          setErr(err.message.split(':')[1])
+        }
+        else {
+          setErr(err.message)
+        }
       }
-      else {
-        setErr(err.message)
-      }
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   const handleSubscribe = async () => {
@@ -208,7 +225,7 @@ const Home = () => {
             <div className="mt-[4rem] h-[10rem] w-[10rem] overflow-hidden rounded-full bg-white">
               {imageUrl !== '' && <img src={imageUrl} className='h-[11rem] w-[11rem]' />}
             </div>
-            <input onChange={handleChange} ref={inputRef} type='file' hidden />
+            <input accept="image/png, image/gif, image/jpeg" onChange={handleChange} ref={inputRef} type='file' hidden />
             <button onClick={() => inputRef.current.click()} className="mt-[1rem] px-[1rem] text-white font-[500] rounded py-[0.5rem] bg-[#4355AF]">
               Upload Photo
             </button>

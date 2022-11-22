@@ -12,6 +12,10 @@ contract pateronFactory{
         artistCount++;
     }
 
+    function getArtistByID(string uid) public view returns(address){
+        return uniqueIdtoAddress[uid];
+    }
+
     function getArtist() public view returns(address[]){
         return registeredArtists;
     }
@@ -41,6 +45,10 @@ contract Artist{
     modifier restricted(){
         require(msg.sender==manager);
         _;
+    }
+
+    function getPostsLength() public view returns(uint){
+        return posts.length;
     }
 
     function Artist(string Aname,uint minContrib,address Amanager, string uid, string Ayoutube, string Atwitch, string Acategory,string profileurl) public{
