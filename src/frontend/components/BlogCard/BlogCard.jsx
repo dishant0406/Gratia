@@ -3,7 +3,7 @@ const BlogCard = ({imgUrl, content, title}) => {
     <div className="lg:flex">
   <div
     className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-    style={{ backgroundImage: `url(${imgUrl})` }}
+    style={{ backgroundImage: `url(${imgUrl})`, backgroundPosition:'center' }}
     title="Mountain"
   ></div>
   <div className="border-r w-[50vw] border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
