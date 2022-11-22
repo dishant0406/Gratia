@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 const ArtistListItem = ({onClick=()=>{}, details}) => {
   const router = useRouter()
   return (
-    <div className='bg-[#95ABE3] flex justify-between px-[3rem] items-center w-[40rem] h-[8rem] rounded-[20px]'>
+    <div className='bg-[#95ABE3] flex-wrap flex md:justify-between justify-center px-[3rem] gap-[3rem] items-center max-w-[40rem] min-h-[8rem] mx-[1rem] py-[2rem] md:py-[0px]  rounded-[20px]'>
         <div className="flex gap-[1rem] items-center">
           <div className="h-[6rem] w-[6rem] rounded-full overflow-hidden bg-white">
             <img src={details.imgurl} className='h-[7rem] w-[7rem]'/>

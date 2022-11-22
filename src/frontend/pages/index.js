@@ -148,12 +148,12 @@ const Home = () => {
     <div className='w-[100vw] relative min-h-[100vh] bg-[#EBEBFD]'>
       <NavBar onClick={() => setSignupOpen(true)} />
       <div className='w-[100vw] flex flex-col items-center'>
-        <p className='text-[56px] font-[700] mt-[3rem]'>Gratia for Gratitude</p>
-        <div className='w-[25rem] mt-[1rem] flex items-center text-[#595B69] px-[2rem] font-sans bg-white rounded-[10px] h-[3rem]'>
+        <p className='text-[56px] md:text-left text-center font-[700] mt-[3rem]'>Gratia for Gratitude</p>
+        <div className='max-w-[25rem] mt-[1rem] flex items-center text-[#595B69] px-[2rem] font-sans bg-white rounded-[10px] h-[3rem]'>
           Support your favourite artist
         </div>
         <button className="px-[2rem] rounded-[10px] text-white font-[700] text-[26px] mt-[1rem] rounded py-[0.25rem] bg-[#4355AF]">Go!</button>
-        <p className="text-[38px] font-[700] w-[80vw] mt-[1rem] text-left">Featured Artists</p>
+        <p className="text-[38px] md:text-left font-[700] w-[80vw] mt-[1rem] text-center">Featured Artists</p>
         <div className='my-[2rem] flex flex-col gap-[1rem]'>
           {status === "notConnected" && <p className='text-[26px] font-[700] text-center'>Connect To Metamask to Access the Content</p>}
           {artistsDetails.map((e, idx) => {

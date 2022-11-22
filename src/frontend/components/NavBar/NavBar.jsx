@@ -19,7 +19,7 @@ const NavBar = ({onClick=()=>{}}) => {
     }
   },[account])
   return (
-    <div className='flex w-[100vw] px-[4rem] justify-between items-center pt-[1rem]'>
+    <div className='flex flex-wrap w-[100vw] px-[4rem] justify-center md:justify-between items-center pt-[1rem]'>
       <p onClick={()=>router.push('/')} className="text-[42px] cursor-pointer font-[700]">Gratia</p>
       <div className="flex gap-[2rem]">
         {status === "notConnected" && (
@@ -29,7 +29,7 @@ const NavBar = ({onClick=()=>{}}) => {
         )}
         {status === "connected" && (
           <button className="px-[1rem] text-white font-[500] rounded py-[0.5rem] bg-[#60C081]">
-          {account}
+          {account.slice(0,15)+'...'}
         </button>
         )}
         {status === "connecting" && (
